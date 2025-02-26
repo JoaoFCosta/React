@@ -11,17 +11,15 @@ import { useState } from "react";
 
 const App = () => {
   const [isLight, setIsLight] = useState(true);
-  const [fotoAtual, trocarFotoPerfil] = useState(fotoEscura);
 
   const troca = () => {
     setIsLight(!isLight);
-    trocarFotoPerfil(!isLight ? fotoEscura : fotoClara);
   };
 
   return (
     <div id="App" className={isLight ? "light" : ""}>
       <div id="container">
-        <Perfil fotoPerfil={fotoAtual}>João</Perfil>
+        <Perfil fotoPerfil={isLight ? fotoEscura : fotoClara}>João</Perfil>
 
         <Switch troca={troca} isLight={isLight} />
 
