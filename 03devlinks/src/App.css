@@ -30,6 +30,7 @@
 #App * {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
+  list-style: none;
 }
 
 #App {

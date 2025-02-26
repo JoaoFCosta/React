@@ -1,5 +1,6 @@
 import "./App.css";
-import foto from "./img/OIP.jpg";
+import fotoEscura from "./img/R.png";
+import fotoClara from "./img/perfilClaro.png";
 
 import Perfil from "./components/perfil/perfil";
 import Switch from "./components/switch/Switch";
@@ -10,39 +11,51 @@ import { useState } from "react";
 
 const App = () => {
   const [isLight, setIsLight] = useState(true);
+  const [fotoAtual, trocarFotoPerfil] = useState(fotoEscura);
 
   const troca = () => {
     setIsLight(!isLight);
+    trocarFotoPerfil(!isLight ? fotoEscura : fotoClara);
   };
 
   return (
     <div id="App" className={isLight ? "light" : ""}>
-      <Perfil fotoPerfil={foto}>João</Perfil>
+      <div id="container">
+        <Perfil fotoPerfil={fotoAtual}>João</Perfil>
 
-      <Switch troca={troca} isLight={isLight}/>
+        <Switch troca={troca} isLight={isLight} />
 
-      <ul>
-        <Links link={"https://github.com/JoaoFCosta"}>Github</Links>
-        <Links link={"https://github.com/JoaoFCosta?tab=repositories"}>
-          Portfólio
-        </Links>
-        <Links link={"https://instagram.com"}>Instagram</Links>
-        <Links link={"https://github.com/JoaoFCosta?tab=repositories"}>
-          Projetos
-        </Links>
-      </ul>
+        <div id="links">
+          <ul>
+            <Links link={"https://github.com/JoaoFCosta"}>Github</Links>
+            <Links link={"https://github.com/JoaoFCosta?tab=repositories"}>
+              Portfólio
+            </Links>
+            <Links link={"https://instagram.com"}>Instagram</Links>
+            <Links link={"https://github.com/JoaoFCosta?tab=repositories"}>
+              Projetos
+            </Links>
+          </ul>
+        </div>
 
-      <div id="socialLinks">
-        <SocialLinks
-          link={"https://github.com/JoaoFCosta"}
-          icon={"logo-github"}
-        />
-        <SocialLinks link={"https://instagram.com"} icon={"logo-instagram"} />
-        <SocialLinks link={"https://youtube.com"} icon={"logo-youtube"} />
-        <SocialLinks link={"https://linkedin.com"} icon={"logo-linkedin"} />
+        <div id="socialLinks">
+          <SocialLinks
+            link={"https://github.com/JoaoFCosta"}
+            icon={"logo-github"}
+          />
+          <SocialLinks
+            link={"https://instagram.com/joaorodolfo16"}
+            icon={"logo-instagram"}
+          />
+          <SocialLinks
+            link={"https://www.youtube.com/@joao78335"}
+            icon={"logo-youtube"}
+          />
+          <SocialLinks link={"https://linkedin.com"} icon={"logo-linkedin"} />
+        </div>
+
+        <Rodape>João</Rodape>
       </div>
-
-      <Rodape>João</Rodape>
     </div>
   );
 };
