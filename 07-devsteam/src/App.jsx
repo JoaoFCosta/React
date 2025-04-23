@@ -16,6 +16,8 @@ function App() {
     salvaCarrinho && setCarrinhoItem(JSON.parse(salvaCarrinho));
   }, []);
 
+  // console.log(localStorage.getItem("devcarrinho"));
+
   const handleAddCarrinho = (produto) => {
     setCarrinhoItem((itemAnterior) => {
       const existe = itemAnterior.find((item) => item.id === produto.id);
@@ -50,7 +52,10 @@ function App() {
   return (
     <>
       <Header contadorJogos={carrinhoItem.length} />
-      <Promotion onAdd={handleAddCarrinho} />
+      <Promotion
+        onAddCarrinho={handleAddCarrinho} //adicionando o click para promoção
+      />
+
       <CarrinhoOffCanvas
         onRemoveCarrinho={handleRemoveCarrinho}
         onUpdateCarrinho={handleUpdateCarrinho}
