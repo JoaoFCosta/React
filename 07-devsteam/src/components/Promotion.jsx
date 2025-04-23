@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PromoCard from "./PromoCard";
 
-const Promotion = () => {
+const Promotion = (props) => {
+  const [aleatorio, setAleatorio] = useState();
+
   const games = [
     {
       id: 1,
@@ -37,6 +39,13 @@ const Promotion = () => {
     },
   ];
 
+  useEffect(() => {
+    const aleatorioJogos = games
+      .filter((jogo) => jogo.desconto > 0)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+  }, []);
+
   return (
     <div id="promotion" className="container w-50 my-5">
       <h2 className="text-uppercase fw-bold">Promoções</h2>
@@ -47,7 +56,6 @@ const Promotion = () => {
         {/* mapeando um array com react */}
         {games
           .filter((jogo) => jogo.desconto > 0)
-          .sort(() => Math.random() - 0.5)
           .slice(0, games.length)
           .map((jogo) => (
             <PromoCard
@@ -56,6 +64,7 @@ const Promotion = () => {
               preco={jogo.preco.toFixed(2)}
               desconto={jogo.desconto}
               imagem={jogo.imagem}
+              onAdd={() => props.onAdd(jogo)}
             />
           ))}
       </div>
