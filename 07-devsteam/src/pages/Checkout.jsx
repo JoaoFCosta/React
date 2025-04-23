@@ -30,27 +30,42 @@ const Checkout = () => {
         <p>Seu carrinho está vazio.</p>
       ) : (
         <>
-          <ul className="list-group mb-3">
+          <ul className="list-group mb-3 border-1 border">
             {carrinho.map((item) => (
               <li
                 key={item.id}
                 className="list-group d-flex justify-content-between align-items-center"
               >
-                <div>
+                <div className="col-12 m-0 border-1 border">
+                  <img
+                    className="object-fit-cover m-4"
+                    src={item.imagem}
+                    alt={item.titulo}
+                    height={150}
+                    width={300}
+                  />
+                </div>
+                <div className="position-absolute m-4">
                   <h6 className="my-0">{item.titulo}</h6>
+                </div>
+                <div className="position-absolute my-5">
                   <small>Qtd: {item.quantidade}</small>
                 </div>
-                <span className="text-decoration-line-through">
-                  R$ {item.preco.toFixed(2)}
-                </span>
-                <span>
-                  R${" "}
-                  {(item.preco - (item.preco * item.desconto) / 100).toFixed(2)}
-                </span>
+                <div className="position-absolute ">
+                  <span className="text-decoration-line-through">
+                    R$ {item.preco.toFixed(2)}
+                  </span>
+                  <span>
+                    R${" "}
+                    {(item.preco - (item.preco * item.desconto) / 100).toFixed(
+                      2
+                    )}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>
-
+          <hr />
           <div className="d-flex justify-content-between mb-3">
             <strong>Total:</strong>
             <strong>R$ {total.toFixed(2)}</strong>
