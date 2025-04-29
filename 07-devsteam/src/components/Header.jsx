@@ -26,12 +26,29 @@ const Header = (props) => {
         id="carrinho"
         className="position-relative d-flex align-items-center gap-3"
       >
-        {usuario && <span>Olá, {usuario.nome.split(" ")[0]}!</span>}
+        {props.usuario ? (
+          <span className="text-light">
+            Olá, {props.usuario.nome.split(" ")[0]}{" "}
+            <button
+              className="btn btn-outline-light btn-sm ms-2"
+              onClick={props.onLogout}
+            >
+              Sair
+            </button>
+          </span>
+        ) : (
+          <button
+            className="btn btn-outline-light btn-sm"
+            
+          >
+            Entre
+          </button>
+        )}
         <i
-          className="bi bi-cart4 fs-2 text-light"
           role="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#carrinhoOffCanvas"
+          className="bi bi-cart4 text-light fs-2"
         ></i>
 
         {props.contadorJogos > 0 && (
